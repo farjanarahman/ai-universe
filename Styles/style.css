@@ -10,13 +10,13 @@
     font-size: 45px;
     line-height: 53px;
 }
-.btn{
+.btn-app{
     background-color: #EB5757;
     border: none;
     font-size: 20px;
     line-height: 23px;
     margin: auto;
 }
-.btn:hover{
+.btn-app:hover{
     background-color: #e23333;
 }
