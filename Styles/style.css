@@ -1,0 +1,22 @@
+/* Google font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&family=Roboto:wght@700&family=Work+Sans:wght@400;600;700&display=swap');
+
+*{
+    font-family: 'Work Sans';
+    font-style: normal;
+}
+.heading{
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 53px;
+}
+.btn{
+    background-color: #EB5757;
+    border: none;
+    font-size: 20px;
+    line-height: 23px;
+    margin: auto;
+}
+.btn:hover{
+    background-color: #e23333;
+}
