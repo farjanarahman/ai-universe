@@ -5,7 +5,17 @@ const loadApps = async (dataLimit) => {
   displayApps(data.data.tools, dataLimit);
 };
 
+//Sort by Date
+
+let sortOrder = 1;
+
+document.getElementById('sorting').addEventListener('click', function(){
+  sortOrder *= -1;
+  processShow()
+});
+
 const displayApps = (apps, dataLimit) => {
+apps.sort((a, b) => sortOrder * (new Date(a.published_in) - new Date(b.published_in)));
 const appContainer = document.getElementById("app-container");
 const showAllButton = document.getElementById('show-all');
 
