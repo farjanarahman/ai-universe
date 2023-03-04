@@ -23,3 +23,13 @@
 .btn-app:hover{
     background-color: #e23333;
 }
+
+.calendar{
+    color: gray;
+    font-weight: 600;
+}
+.arrow{
+    color: #EB5757;
+    background-color: #FEF7F7;
+    padding: 20px;
+}

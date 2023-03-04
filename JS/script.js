@@ -28,15 +28,14 @@ const displayApps = (apps, dataLimit) => {
             <h3 class="card-title fw-semibold">Features</h3>
             <ol class="card-text" type="1">${featuresList}</ol>              
             <hr>
-            <div>
-            <h3 class="card-title fw-semibold">${app.name}</h3>
-            <div class="calendar">
-              <i class="fa-solid fa-calendar-days"></i>
-              <p>${app.published_in}</p>
-            </div></div>
-            <div>
-            <i class="fa-solid fa-calendar-days"></i>
-            </div></div>
+          <div class="d-flex justify-content-between">
+            <div class="title-calendar">
+              <h3 class="card-title fw-semibold">${app.name}</h3>
+              <p class="calendar"><span><i class="fa-solid fa-calendar-days"></i></span> ${app.published_in}</p>
+            </div>
+            <div class="arrow mt-3 rounded-circle">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
           </div>
         </div>
       `;
@@ -44,6 +43,7 @@ const displayApps = (apps, dataLimit) => {
   });
 };
 
+// loader start
 const processShow = (dataLimit) => {
   toggleSpinner(true);
   loadApps(dataLimit);
@@ -53,6 +53,8 @@ document.getElementById("show-all").addEventListener("click", function () {
   processShow();
 });
 
+
+// Loader stop
 const toggleSpinner = (isLoading) => {
   const loaderSection = document.getElementById("loader");
   if (isLoading) {
