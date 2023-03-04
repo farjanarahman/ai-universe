@@ -16,6 +16,9 @@
     font-size: 20px;
     line-height: 23px;
     margin: auto;
+    margin-bottom: 40px;
+    padding: 20px 15px;
+    border-radius: 15px;
 }
 .btn-app:hover{
     background-color: #e23333;

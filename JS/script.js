@@ -15,8 +15,8 @@ const displayApps = apps => {
       appDiv.classList.add('col');
       const featuresList = app.features.map((feature) => `<li>${feature}</li>`).join('');
       appDiv.innerHTML = `
-        <div class="card p-4">
-          <img src="${app.image}" class="card-img-top" alt="...">
+        <div class="card p-4 rounded-3">
+          <img src="${app.image}" class="card-img-top rounded-3 h-100" alt="...">
           <div class="card-body">
             <h3 class="card-title fw-semibold">Features</h3>
             <ol class="card-text" type="1">${featuresList}</ol>              
@@ -30,7 +30,6 @@ const displayApps = apps => {
             <div>
             <i class="fa-solid fa-calendar-days"></i>
             </div></div>
-
           </div>
         </div>
       `;
