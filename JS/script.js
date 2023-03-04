@@ -6,12 +6,13 @@ const loadApps = async (dataLimit) => {
 };
 
 const displayApps = (apps, dataLimit) => {
-  const appContainer = document.getElementById("app-container");
+const appContainer = document.getElementById("app-container");
+const showAllButton = document.getElementById('show-all');
 
-  const showAll = document.getElementById("show-all");
-  if (dataLimit && apps.length > dataLimit) {
-    apps = apps.slice(0, dataLimit);
-  }
+//display 6 phones only
+if (dataLimit && apps.length > dataLimit) {
+  apps = apps.slice(0, dataLimit);
+}
 
 // clear previous content
   appContainer.innerHTML = ""; 
@@ -34,13 +35,23 @@ const displayApps = (apps, dataLimit) => {
               <p class="calendar"><span><i class="fa-solid fa-calendar-days"></i></span> ${app.published_in}</p>
             </div>
             <div class="arrow mt-3 rounded-circle">
-              <i class="fa-solid fa-arrow-right"></i>
+            <button onclick="loadAppDetails(${app.id})" ><i class="fa-solid fa-arrow-right text-danger"></i></buttton>
             </div>
           </div>
         </div>
       `;
     appContainer.appendChild(appDiv);
   });
+
+  if (dataLimit && apps.length === dataLimit) {
+    showAllButton.classList.remove('d-none');
+  } 
+  else {
+    showAllButton.classList.add('d-none');
+  }
+
+  // Stop Loader
+  toggleSpinner(false);
 };
 
 // loader start
@@ -49,21 +60,30 @@ const processShow = (dataLimit) => {
   loadApps(dataLimit);
 };
 
-document.getElementById("show-all").addEventListener("click", function () {
+document.getElementById('show-all').addEventListener('click', function () {
   processShow();
 });
 
-
-// Loader stop
 const toggleSpinner = (isLoading) => {
-  const loaderSection = document.getElementById("loader");
+  const loaderSection = document.getElementById('loader');
   if (isLoading) {
-    loaderSection.classList.remove("d-none");
+    loaderSection.classList.remove('d-none');
   } 
   else {
-    loaderSection.classList.add("d-none");
+    loaderSection.classList.add('d-none');
   }
 };
+
+document.getElementById("btn-show-all").addEventListener("click", function () {
+  processShow();
+});
+
+const loadAppDetails = async(id) =>{
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(data);
+}
 
 // initially show only 6 cards
 loadApps(6); 
