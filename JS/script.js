@@ -1,13 +1,11 @@
 const loadApps = async (dataLimit) => {
-
-
-  const url = `https://openapi.programming-hero.com/api/ai/tools`;
-  const res = await fetch(url);
-  const data = await res.json();
-  displayApps(data.data.tools, dataLimit);
+const url = `https://openapi.programming-hero.com/api/ai/tools`;
+const res = await fetch(url);
+const data = await res.json();
+displayApps(data.data.tools, dataLimit);
 };
 
-//sorting
+// sorting
 // let sortOrder = 1;
 
 // document.getElementById('sorting').addEventListener('click', function(){
@@ -30,7 +28,7 @@ const displayApps = (apps, dataLimit) => {
   appContainer.innerHTML = '';
 
   apps.forEach((app) => {
-    console.log("appid",app.description);
+    console.log(app.description);
     const appDiv = document.createElement('div');
     appDiv.classList.add('col');
     const featuresList = app.features.map((feature) => `<li>${feature}</li>`).join('');
@@ -51,24 +49,7 @@ const displayApps = (apps, dataLimit) => {
         </div>
       </div>
     </div>
-    <!-- Modal -->
-  <div class="modal" id="appModal" tabindex="-1" aria-labelledby="appModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div>
-          <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex">
-          <div>
-            <h3 class="app-des">${app.description}</h3>
-            <img src="${app.logo}" class="card-img-top app-img" alt="...">
-            <p class="app-cost">${app.pricing ? app.pricing.price : 'Free of Cost'}</p>
-            <p class="app-plan">${app.plan}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
     `;
     appContainer.appendChild(appDiv);
   });
@@ -109,7 +90,6 @@ document.getElementById('btn-show-all').addEventListener('click', function () {
 
 const loadAppDetails = async(id) =>{
   id = ("0" + id).slice(-2);
-  console.log("idd",id);
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
   const res = await fetch(url);
   const data = await res.json();
@@ -117,10 +97,49 @@ const loadAppDetails = async(id) =>{
 }
 
 const displayAppDetails = app =>{
-  console.log(app);
+  console.log(app.data);
+  const modalBody = document.getElementById('my-modal')
+  modalBody.innerHTML = ''
+  const div = document.createElement('div')
+  div.innerHTML = `
+              <div class="d-flex modal-full">
+                <h3 class="app-des text-center d-bl">${app.data.description}</h3>
+                <div class="subscibe d-flex fw-semibold">
+                  <div class="basic text-success">
+                    <p class="app-cost">${app.data.pricing ? app.data.pricing[0].price : 'Free of Cost'}</p>
+                    <p class="app-plan">${app.data.pricing[0].plan}</p>
+                  </div>
+                  <div class="pro text-warning-emphasis">
+                    <p class="app-cost">${app.data.pricing ? app.data.pricing[1].price : 'Free of Cost'}</p>
+                    <p class="app-plan">${app.data.pricing[1].plan}</p>
+                  </div>
+                  <div class="contact text-danger">
+                    <p class="app-cost">${app.data.pricing ? app.data.pricing[2].price : 'Free of Cost'}</p>
+                    <p class="app-plan">${app.data.pricing[2].plan}</p>
+                  </div>
+                </div>
+                <div class="features-int d-flex">
+                 <div>
+                  <h3 class="app-des text-center d-bl">${app.data.features}</h3>
+                 </div>
+                </div>
+
+              <div>
+                <img src="${app.data.image_link[0]}" class="card-img-top app-img" alt="...">
+              </div>
+            </div>
+            `
+            modalBody.appendChild(div)
+  // console.log(app.data.description);
+
+  // console.log(app.data.logo);
 }
 
 loadApps(6);
+
+
+
+
 
 
 
