@@ -6,17 +6,17 @@ displayApps(data.data.tools, dataLimit);
 };
 
 // sorting
-// let sortOrder = 1;
+let sortOrder = undefined;
 
-// document.getElementById('sorting').addEventListener('click', function(){
-//   sortOrder *= -1;
-
-//   processShow();
-// });
+document.getElementById('sorting').addEventListener('click', function(){
+  sortOrder = 1;
+  processShow();
+});
 
 const displayApps = (apps, dataLimit) => {
-  // apps.sort((a, b) => sortOrder * (new Date(a.published_in) - new Date(b.published_in)));
-
+  if(sortOrder !== undefined){
+    apps.sort((a, b) => sortOrder * (new Date(a.published_in) - new Date(b.published_in)));
+  }
   const appContainer = document.getElementById('app-container');
   const showAllButton = document.getElementById('show-all');
 
@@ -101,38 +101,50 @@ const displayAppDetails = app =>{
   const modalBody = document.getElementById('my-modal')
   modalBody.innerHTML = ''
   const div = document.createElement('div')
+  const accurate = `${app.data.accuracy.score * 100}`;
   div.innerHTML = `
-              <div class="d-flex modal-full">
-                <h3 class="app-des text-center d-bl">${app.data.description}</h3>
-                <div class="subscibe d-flex fw-semibold">
+            <div class="d-flex modal-full">
+                
+              <div class="modal-left w-60">
+                <h3 class="app-des">${app.data.description}</h3>
+                <div class="subscibe d-flex fw-semibold mt-3">
                   <div class="basic text-success">
-                    <p class="app-cost">${app.data.pricing ? app.data.pricing[0].price : 'Free of Cost'}</p>
-                    <p class="app-plan">${app.data.pricing[0].plan}</p>
+                    <p><span class="app-cost">${app.data.pricing ? app.data.pricing[0].price : 'Free of Cost'}</span> <span class="app-plan">${app.data.pricing[0].plan}</span></p>
                   </div>
                   <div class="pro text-warning-emphasis">
-                    <p class="app-cost">${app.data.pricing ? app.data.pricing[1].price : 'Free of Cost'}</p>
-                    <p class="app-plan">${app.data.pricing[1].plan}</p>
+                    <p><span class="app-cost">${app.data.pricing ? app.data.pricing[1].price : 'Free of Cost'}</span> <span class="app-plan">${app.data.pricing[1].plan}</span>
+                      </p> 
+                    </div>
+                    <div class="contact text-danger">
+                      <p> <span class="app-cost">${app.data.pricing ? app.data.pricing[2].price : 'Free of Cost'}</span> <span class="app-plan">${app.data.pricing[2].plan}</span>
+                      </p>
+                     
+                    </div>
                   </div>
-                  <div class="contact text-danger">
-                    <p class="app-cost">${app.data.pricing ? app.data.pricing[2].price : 'Free of Cost'}</p>
-                    <p class="app-plan">${app.data.pricing[2].plan}</p>
+                  <div class="features-int d-flex">
+                    <div class="feature">
+                      <h3 class="int-head">Features</h3>
+                      <ol class=" text-center d-bl">${app.data.features ? Object.values(app.data.features).map(item=>`<li>${item.feature_name}</li>`).join(''): 'No data'}</ol>
+                    </div>
+                   <div class="int">
+                    <h3 class="int-head">Integrations</h3>
+                    <ol class=" text-center">${app.data.integrations ? Object.values(app.data.integrations).map(items=>`<li>${items}</li>`).join(''): 'No data'}</ol>
                   </div>
-                </div>
-                <div class="features-int d-flex">
-                 <div>
-                  <h3 class="app-des text-center d-bl">${app.data.features}</h3>
-                 </div>
+                  </div>
                 </div>
 
-              <div>
-                <img src="${app.data.image_link[0]}" class="card-img-top app-img" alt="...">
+              <div class="modal-right ms-2">
+                 <div class="card-wrapper">
+                  <img src="${app.data.image_link[0]}" class="card-img card-img-top app-img rounded" alt="...">
+                  <p class="accuracy">${accurate}% accuracy</p>
+                 </div>
+
+                <h4 class="input mt-3">${app.data.input_output_examples[0].input}</h4>
+                <p>${app.data.input_output_examples[0].output}</p>
               </div>
             </div>
             `
             modalBody.appendChild(div)
-  // console.log(app.data.description);
-
-  // console.log(app.data.logo);
 }
 
 loadApps(6);

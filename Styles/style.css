@@ -12,7 +12,7 @@
 }
 .btn-app{
     background-color: #EB5757;
-    border: none;
+    border: none !important;
     font-size: 20px;
     line-height: 23px;
     margin: auto;
@@ -37,9 +37,51 @@
     font-family: 'Work Sans';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     color: #111111;
 }
 .modal-left{
-    
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: #fbdcdc;
+    padding: 10px;
+}
+.basic, .pro, .contact{
+    font-size: 14px;
+    margin-right: 5px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.int-head, .input{
+    font-size: 18px;
+    font-weight: 600;
+}
+.basic.text-success p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding: 0px 10px; */
+}
+.btn-mod{
+    color: red !important; 
+}
+
+.modal-left{
+    width: 55%;
+}
+.card-wrapper{
+    position: relative;
+}
+p.accuracy {
+    position: absolute;
+    bottom: 85px;
+    color: white;
+    background-color: rgb(252, 79, 79);
+    border-radius: 5px;    
+    padding: 5px 10px;
+    left: 73px;
+}
+.ai-modal{
+    width: 900px;
 }
