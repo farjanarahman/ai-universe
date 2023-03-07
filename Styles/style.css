@@ -47,21 +47,20 @@
     padding: 10px;
 }
 .basic, .pro, .contact{
-    font-size: 14px;
+    font-size: 12px;
     margin-right: 5px;
     background-color: white;
     border-radius: 5px;
 }
 
 .int-head, .input{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
 }
 .basic.text-success p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* padding: 0px 10px; */
 }
 .btn-mod{
     color: red !important; 
@@ -80,8 +79,9 @@ p.accuracy {
     background-color: rgb(252, 79, 79);
     border-radius: 5px;    
     padding: 5px 10px;
-    left: 73px;
+    left: 77px;
 }
-.ai-modal{
-    width: 900px;
+
+.text{
+    font-size: 14px;
 }
